@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #121212 0%, #2d2d2d 100%);
+            color: #fff;
+        }
+        
+        .logo {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .logo h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: #ff4757;
+        }
+        
+        .login-container {
+            width: 90%;
+            max-width: 400px;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .welcome-text {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #f0f0f0;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            padding-left: 45px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.07);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 42px;
+            color: #ff4757;
+        }
+
+        .error-message {
+            color: #ff4757;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+        }
+        
+        .btn-google {
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-google:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin: 0 10px;
+        }
+        
+        .links {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        
+        .links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .links a:hover {
+            color: #ff4757;
+        }
+
+        /* Fitness-themed elements */
+        .fitness-quote {
+            text-align: center;
+            margin-top: 30px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+
+        .pulse {
+            animation: pulse-animation 2s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .shake {
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <h1>Fit<span>Track</span></h1>
+    </div>
+    
+    <div class="login-container">
+        <div class="welcome-text">Bienvenido</div>
+        
+        <form id="login-form">
+            <div class="input-group">
+                <label for="usuario">Usuario</label>
+                <i class="fas fa-user"></i>
+                <input type="text" id="usuario" name="usuario" placeholder="Ingresa tu usuario">
+                <div class="error-message" id="usuario-error">Este campo es obligatorio</div>
+            </div>
+            
+            <div class="input-group">
+                <label for="contrasena">Contraseña</label>
+                <i class="fas fa-lock"></i>
+                <input type="password" id="contrasena" name="contrasena" placeholder="Ingresa tu contraseña">
+                <div class="error-message" id="contrasena-error">Este campo es obligatorio</div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary pulse">Entrar</button>
+        </form>
+        
+        <div class="divider">o</div>
+        
+        <button class="btn btn-google">
+            <i class="fab fa-google"></i>
+            Continuar con Google
+        </button>
+        
+        <div class="links">
+            <a href="#" id="register-link">Registrarse</a>
+            <a href="#" id="forgot-link">Olvidé mi contraseña</a>
+        </div>
+    </div>
+
+    <div class="fitness-quote">
+        "El único mal entrenamiento es el que no hiciste"
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+            
+            // Validate username
+            const usuario = document.getElementById('usuario');
+            const usuarioError = document.getElementById('usuario-error');
+            
+            if (!usuario.value.trim()) {
+                usuarioError.style.display = 'block';
+                usuario.classList.add('shake');
+                isValid = false;
+                
+                setTimeout(() => {
+                    usuario.classList.remove('shake');
+                }, 500);
+            } else {
+                usuarioError.style.display = 'none';
+            }
+            
+            // Validate password
+            const contrasena = document.getElementById('contrasena');
+            const contrasenaError = document.getElementById('contrasena-error');
+            
+            if (!contrasena.value.trim()) {
+                contrasenaError.style.display = 'block';
+                contrasena.classList.add('shake');
+                isValid = false;
+                
+                setTimeout(() => {
+                    contrasena.classList.remove('shake');
+                }, 500);
+            } else {
+                contrasenaError.style.display = 'none';
+            }
+            
+            // If validation passes, navigate to home page
+            if (isValid) {
+                // Store username for personalized welcome
+                localStorage.setItem('fitTrackUser', usuario.value);
+                window.location.href = '../Front/todo/index.html';
+            }
+        });
+        
+        // Register link
+        document.getElementById('register-link').addEventListener('click', function() {
+            alert('Funcionalidad de registro en desarrollo. ¡Próximamente!');
+        });
+        
+        // Forgot password link
+        document.getElementById('forgot-link').addEventListener('click', function() {
+            alert('Funcionalidad de recuperación de contraseña en desarrollo. ¡Próximamente!');
+        });
+        
+        // Google login button
+        document.querySelector('.btn-google').addEventListener('click', function() {
+            alert('Inicio de sesión con Google en desarrollo. ¡Próximamente!');
+        });
+    </script>
+</body>
+</html>

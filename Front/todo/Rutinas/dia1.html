@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack - Rutina Día 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: #121212;
+            color: #fff;
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+        
+        .routine-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .routine-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-transform: lowercase;
+        }
+        
+        .routine-title::first-letter {
+            text-transform: uppercase;
+        }
+        
+        .exercise-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .exercise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 71, 87, 0.3);
+        }
+        
+        .exercise-name {
+            font-size: 18px;
+            font-weight: 600;
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .exercise-content {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+        }
+        
+        .exercise-image {
+            width: 120px;
+            height: 120px;
+            margin-right: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .exercise-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .exercise-details {
+            flex: 1;
+        }
+        
+        .complete-exercise {
+            display: inline-block;
+            color: #32cd32;
+            font-size: 24px;
+            margin-left: 10px;
+        }
+        
+        .exercise-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .exercise-completed .exercise-name {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: line-through;
+        }
+        
+        .youtube-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ff0000;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .youtube-button i {
+            margin-right: 5px;
+        }
+        
+        @keyframes check-animation {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .check-animation {
+            animation: check-animation 0.5s forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="routine-container">
+        <a href="../index.html" class="back-link">
+            REGRESAR A RUTINAS
+        </a>
+        
+        <h1 class="routine-title">rutina día 1</h1>
+        
+        <div class="exercise-card exercise-completed">
+            <a href="#" class="exercise-link">
+                <div class="exercise-name">
+                    Press en Banca
+                    <span class="complete-exercise">
+                        <i class="fas fa-check-circle"></i>
+                    </span>
+                </div>
+                <div class="exercise-content">
+                    <div class="exercise-image">
+                        <img src="../assets/images/ejercicios/caminadora.jpg" alt="Press en Banca">
+                    </div>
+                    <div class="exercise-details">
+                        <p>4 series de 10 repeticiones</p>
+                        <p>Descanso: 60 segundos</p>
+                        <a href="#" class="youtube-button">
+                            <i class="fab fa-youtube"></i> Ver video
+                        </a>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="exercise-card">
+            <a href="#" class="exercise-link">
+                <div class="exercise-name">
+                    Curl de Biceps
+                </div>
+                <div class="exercise-content">
+                    <div class="exercise-image">
+                        <img src="../assets/images/ejercicios/press-plano.jpg" alt="Curl de Biceps">
+                    </div>
+                    <div class="exercise-details">
+                        <p>3 series de 12 repeticiones</p>
+                        <a href="#" class="youtube-button">
+                            <i class="fab fa-youtube"></i> Ver video
+                        </a>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        // Toggle exercise completion when clicked
+        document.querySelectorAll('.exercise-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // If it's a link to exercise details or YouTube, don't prevent default
+                if (e.target.closest('.youtube-button') || this.getAttribute('href').includes('ejercicios/')) {
+                    return;
+                }
+                
+                e.preventDefault();
+                const card = this.closest('.exercise-card');
+                
+                if (!card.classList.contains('exercise-completed')) {
+                    card.classList.add('exercise-completed');
+                    
+                    // Create check icon if it doesn't exist
+                    if (!this.querySelector('.complete-exercise')) {
+                        const checkSpan = document.createElement('span');
+                        checkSpan.className = 'complete-exercise';
+                        checkSpan.innerHTML = '<i class="fas fa-check-circle check-animation"></i>';
+                        this.querySelector('.exercise-name').appendChild(checkSpan);
+                    }
+                } else {
+                    card.classList.remove('exercise-completed');
+                    const checkSpan = this.querySelector('.complete-exercise');
+                    if (checkSpan) {
+                        checkSpan.remove();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

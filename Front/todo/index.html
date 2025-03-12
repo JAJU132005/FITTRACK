@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: #121212;
+            color: #fff;
+            min-height: 100vh;
+        }
+        
+        .dashboard-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            padding-bottom: 80px; /* Espacio para la barra de navegación */
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: #ff4757;
+        }
+        
+        .profile-wrapper {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .profile-pic {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #ff4757;
+            overflow: hidden;
+            margin-right: 20px;
+            box-shadow: 0 4px 10px rgba(255, 71, 87, 0.5);
+        }
+        
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-info {
+            flex: 1;
+        }
+        
+        .welcome-text {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 5px;
+        }
+        
+        .user-name {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .user-stats {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .stat {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .stat i {
+            color: #ff4757;
+            font-size: 14px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: #ff4757;
+        }
+        
+        .routines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .routine-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 140px;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-decoration: none;
+            color: #fff;
+            display: block;
+        }
+        
+        .routine-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 71, 87, 0.3);
+        }
+        
+        .routine-card:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff4757, #ff6b81);
+        }
+        
+        .routine-card:nth-child(2n):before {
+            background: linear-gradient(90deg, #1e90ff, #00bfff);
+        }
+        
+        .routine-card:nth-child(3n):before {
+            background: linear-gradient(90deg, #32cd32, #7fff00);
+        }
+        
+        .routine-day {
+            font-size: 18px;
+            font-weight: 600;
+            padding: 20px 15px;
+            text-align: center;
+        }
+        
+        .routine-info {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 0 15px 15px;
+            text-align: center;
+        }
+        
+        .last-workout-card {
+            background-color: rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .last-workout-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .last-workout-title {
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .last-workout-title i {
+            margin-right: 10px;
+            color: #ff4757;
+        }
+        
+        .workout-date {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .workout-info {
+            background-color: rgba(255, 71, 87, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 14px;
+            text-align: center;
+            border-left: 3px solid #ff4757;
+        }
+        
+        .workout-day {
+            font-weight: 600;
+            font-size: 18px;
+            margin-top: 5px;
+            color: #ff4757;
+        }
+        
+        .nav-buttons {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
+            background-color: rgba(18, 18, 18, 0.95);
+            padding: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 12px;
+        }
+        
+        .nav-button i {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .nav-button.active {
+            color: #ff4757;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="header">
+            <div class="logo">Fit<span>Track</span></div>
+        </div>
+        
+        <div class="profile-wrapper">
+            <div class="profile-pic">
+                <img src="assets/images/profile/default-avatar.jpg" alt="Perfil" id="profile-image">
+            </div>
+            <div class="profile-info">
+                <div class="welcome-text">¡Hola!</div>
+                <div class="user-name" id="user-name">Usuario</div>
+                <div class="user-stats">
+                    <div class="stat">
+                        <i class="fas fa-dumbbell"></i>
+                        <span>Nivel 3</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-fire"></i>
+                        <span>5 Rutinas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">
+            <i class="fas fa-calendar-alt"></i>
+            Tus Rutinas
+        </div>
+        
+        <div class="routines-grid">
+            <a href="Rutinas/dia1.html" class="routine-card">
+                <div class="routine-day">DÍA 1</div>
+                <div class="routine-info">Pecho y Brazos</div>
+            </a>
+            <a href="Rutinas/dia2.html" class="routine-card">
+                <div class="routine-day">DÍA 2</div>
+                <div class="routine-info">Piernas</div>
+            </a>
+            <a href="Rutinas/dia3.html" class="routine-card">
+                <div class="routine-day">DÍA 3</div>
+                <div class="routine-info">Hombros y Espalda</div>
+            </a>
+            <a href="Rutinas/dia4.html" class="routine-card">
+                <div class="routine-day">DÍA 4</div>
+                <div class="routine-info">Cardio</div>
+            </a>
+            <a href="Rutinas/dia5.html" class="routine-card">
+                <div class="routine-day">DÍA 5</div>
+                <div class="routine-info">Full Body</div>
+            </a>
+        </div>
+        
+        <div class="last-workout-card">
+            <div class="last-workout-header">
+                <div class="last-workout-title">
+                    <i class="fas fa-history"></i>
+                    Último Entrenamiento
+                </div>
+                <div class="workout-date">26/02/2025</div>
+            </div>
+            <div class="workout-info">
+                Completaste tu entrenamiento
+                <div class="workout-day">DÍA 3</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="nav-buttons">
+        <a href="index.html" class="nav-button active">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="#" class="nav-button">
+            <i class="fas fa-dumbbell"></i>
+            <span>Ejercicios</span>
+        </a>
+        <a href="#" class="nav-button">
+            <i class="fas fa-chart-line"></i>
+            <span>Progreso</span>
+        </a>
+        <a href="#" class="nav-button">
+            <i class="fas fa-user"></i>
+            <span>Perfil</span>
+        </a>
+    </div>
+
+    <script>
+        // Set user name from localStorage if available
+        document.addEventListener('DOMContentLoaded', function() {
+            const storedUser = localStorage.getItem('fitTrackUser');
+            if (storedUser) {
+                document.getElementById('user-name').textContent = storedUser;
+            }
+            
+            // Set placeholder image if profile image fails to load
+            document.getElementById('profile-image').onerror = function() {
+                this.src = 'assets/images/profile/default-avatar.jpg';
+            };
+        });
+    </script>
+</body>
+</html>
